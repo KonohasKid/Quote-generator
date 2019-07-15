@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
 import './App.css'
 
+
 class Quote extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this)
-        this.state = { Author : ["Dr. Seuss", "Marilyn Monroe", "Oscar Wilde", "Albert Einstein", "Frank Zappa", "Eric Thomas"],
-        Quote: ["Don't cry because it's over, smile because it happened.", "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.", "Be yourself; everyone else is already taken.", "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.", "So many books, so little time.", "Avoid being your own enemy."] }
+ constructor(){
+     super();
+     this.state = {
+         quote: {
+             quotes:'',
+             author:''
+         },
+         havingQuote: false
+     }
+     this.END_POINT = 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1'
+ }
+   
+handleClick = event => {
+fetch(this.END_POINT)
+.then(response => response.json())
+.then(data => {
+    if(data[0].quotes && data[0].author){
+        let{quote} = this.state;
+        let quoteData = data[0];
+        quote.quotes = quoteData.quotes;
+        quote.author = quoteData.author;
+        this.setState({quote} = () =>{
+            if (this.state.havingQuote === false){
+                this.setState({havingQuote:true})
+            }
+        })
     }
-   
-handleClick(){
-    let randomNumber =(Math.floor(Math.random()* 3));
-    let quotes = quotes[randomNumber].Quote;
-    this.setState({Quote:quotes})
-    let authors = quotes[randomNumber].Author;
-    this.setState({Author:authors})
-   
+    else{
+        return console.error('There is no quote dude')
+    }
+})   
 }
 
     render() { 
-        
+        const {havingQuote, quote} = this.state;
         return ( 
             <div>
             <div className="container-fluid">
@@ -27,11 +45,13 @@ handleClick(){
             <h1>Welcome to our quote machine</h1>
             </div>
             <div id="OurQuote">
-              <h2 id="Author" Author={this.state.Author}></h2>
-              <h4 id="Quote" Quote={this.state.Quote}></h4>
+              <h2 id="Author">{havingQuote === true ? JSON.stringify(quote) : 'no quote yet'}</h2>
+              
               </div>
               <div id="btn">
-              <button id="button" onClick={this.handleClick.bind(this)}><h5>Get quote</h5></button>
+              <button id="button" onClick={this.handleClick}><h5>
+                  Get quote
+                  </h5></button>
               </div>
             
             
