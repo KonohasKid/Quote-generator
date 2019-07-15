@@ -1,0 +1,49 @@
+#quote{
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  grid-template-rows: auto ;
+  grid-gap: 15px;
+  }
+  #OurQuote{
+   display: grid;
+   grid-template-columns: auto auto;
+   grid-template-rows: auto;
+   grid-gap: 15px;
+   justify-content: center;
+    border: 1px solid white;
+    background-color:#803939;
+  }
+  body{
+    background-color: #0b1142;
+    font-family: Haettenschweiler;
+  }
+  #Quote{
+color: white;
+font-style: italic;
+  }
+  #Author{
+color: white;
+  }
+  button{
+    border-radius: 5%;
+    background-color: orange;
+    border:1px solid white;
+  }
+  h1{
+    color: white;
+  }
+  
+#btn{
+  display: grid;
+  grid-template-columns: 150px;
+  justify-content: center;
+
+
+}
+.container-fluid{
+  display: grid;
+  grid-row-gap: 15px; 
+  justify-content: center;
+  width: auto;
+}
