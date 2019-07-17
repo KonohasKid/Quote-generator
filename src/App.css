@@ -25,9 +25,18 @@ font-style: italic;
   #Author{
 color: white;
   }
+  img{
+    height:50px;
+    width:50px;
+  }
   button{
     border-radius: 5%;
     background-color: orange;
+    border:1px solid white;
+  }
+  #buttonn{
+    border-radius: 5%;
+    background-color: #42d1f5;
     border:1px solid white;
   }
   h1{
@@ -36,7 +45,8 @@ color: white;
   
 #btn{
   display: grid;
-  grid-template-columns: 150px;
+  grid-template-columns: 150px 150px;
+  grid-column-gap: 5px;
   justify-content: center;
 
 
